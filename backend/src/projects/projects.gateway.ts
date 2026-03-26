@@ -1,7 +1,4 @@
-import {
-  WebSocketGateway,
-  WebSocketServer,
-} from '@nestjs/websockets';
+import { WebSocketGateway, WebSocketServer } from '@nestjs/websockets';
 import { Logger } from '@nestjs/common';
 import { Server } from 'socket.io';
 
@@ -40,24 +37,44 @@ export class ProjectsGateway {
     });
   }
 
-  emitJoinRequested(data: { projectId: number; requestId: number; userId: number; userEmail: string }) {
-    this.logger.log(`project:join-requested project=${data.projectId} user=${data.userId}`);
+  emitJoinRequested(data: {
+    projectId: number;
+    requestId: number;
+    userId: number;
+    userEmail: string;
+  }) {
+    this.logger.log(
+      `project:join-requested project=${data.projectId} user=${data.userId}`,
+    );
     this.server.emit('project:join-requested', {
       ...data,
       timestamp: new Date().toISOString(),
     });
   }
 
-  emitJoinAccepted(data: { projectId: number; requestId: number; userId: number; userEmail: string }) {
-    this.logger.log(`project:join-accepted project=${data.projectId} user=${data.userId}`);
+  emitJoinAccepted(data: {
+    projectId: number;
+    requestId: number;
+    userId: number;
+    userEmail: string;
+  }) {
+    this.logger.log(
+      `project:join-accepted project=${data.projectId} user=${data.userId}`,
+    );
     this.server.emit('project:join-accepted', {
       ...data,
       timestamp: new Date().toISOString(),
     });
   }
 
-  emitJoinRejected(data: { projectId: number; requestId: number; userId: number }) {
-    this.logger.log(`project:join-rejected project=${data.projectId} request=${data.requestId}`);
+  emitJoinRejected(data: {
+    projectId: number;
+    requestId: number;
+    userId: number;
+  }) {
+    this.logger.log(
+      `project:join-rejected project=${data.projectId} request=${data.requestId}`,
+    );
     this.server.emit('project:join-rejected', {
       ...data,
       timestamp: new Date().toISOString(),
@@ -65,7 +82,9 @@ export class ProjectsGateway {
   }
 
   emitMemberRemoved(data: { projectId: number; userId: number }) {
-    this.logger.log(`project:member-removed project=${data.projectId} user=${data.userId}`);
+    this.logger.log(
+      `project:member-removed project=${data.projectId} user=${data.userId}`,
+    );
     this.server.emit('project:member-removed', {
       ...data,
       timestamp: new Date().toISOString(),

@@ -147,7 +147,12 @@ export class ProjectsService {
       }),
     ]);
 
-    return { accepted: true, projectId: req.projectId, userId: req.userId, userEmail: req.user.email };
+    return {
+      accepted: true,
+      projectId: req.projectId,
+      userId: req.userId,
+      userEmail: req.user.email,
+    };
   }
 
   async rejectRequest(requestId: number, ownerId: number) {
@@ -174,7 +179,8 @@ export class ProjectsService {
       where: { userId_projectId: { userId: memberId, projectId } },
     });
     if (!member) throw new NotFoundException('Member not found');
-    if (member.role === 'OWNER') throw new ForbiddenException('Cannot remove owner');
+    if (member.role === 'OWNER')
+      throw new ForbiddenException('Cannot remove owner');
 
     await this.prisma.projectMember.delete({
       where: { id: member.id },

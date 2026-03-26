@@ -31,8 +31,14 @@ function getAvatarColor(email: string): string {
     hash = email.charCodeAt(i) + ((hash << 5) - hash);
   }
   const colors = [
-    'bg-violet-500', 'bg-sky-500', 'bg-emerald-500', 'bg-amber-500',
-    'bg-rose-500', 'bg-teal-500', 'bg-indigo-500', 'bg-pink-500',
+    'bg-violet-500',
+    'bg-sky-500',
+    'bg-emerald-500',
+    'bg-amber-500',
+    'bg-rose-500',
+    'bg-teal-500',
+    'bg-indigo-500',
+    'bg-pink-500',
   ];
   return colors[Math.abs(hash) % colors.length];
 }
@@ -221,9 +227,7 @@ export default function TasksPage() {
       <header className="bg-white dark:bg-zinc-900 border-b border-zinc-200 dark:border-zinc-800">
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
           <div className="flex items-center gap-6">
-            <h1 className="text-xl font-bold text-zinc-900 dark:text-zinc-100">
-              Circle
-            </h1>
+            <h1 className="text-xl font-bold text-zinc-900 dark:text-zinc-100">Circle</h1>
             <nav className="flex items-center gap-1">
               <Link
                 href="/projects"
@@ -257,7 +261,9 @@ export default function TasksPage() {
         {error && (
           <div className="mb-6 bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 p-4 rounded-xl text-sm flex items-center justify-between">
             <span>{error}</span>
-            <button onClick={() => setError('')} className="text-red-400 hover:text-red-600 ml-4">✕</button>
+            <button onClick={() => setError('')} className="text-red-400 hover:text-red-600 ml-4">
+              ✕
+            </button>
           </div>
         )}
 
@@ -370,7 +376,11 @@ export default function TasksPage() {
                           </span>
                           <span className="text-[11px] text-zinc-400 dark:text-zinc-500 truncate">
                             {email.split('@')[0]}
-                            {isOwn && <span className="ml-1 text-zinc-900 dark:text-zinc-100 font-medium">(you)</span>}
+                            {isOwn && (
+                              <span className="ml-1 text-zinc-900 dark:text-zinc-100 font-medium">
+                                (you)
+                              </span>
+                            )}
                           </span>
                         </div>
                         {isOwn && (

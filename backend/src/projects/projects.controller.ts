@@ -47,7 +47,9 @@ export class ProjectsController {
     @Body() dto: CreateProjectDto,
   ) {
     const project = await this.projectsService.create(user.id, dto);
-    this.projectsGateway.emitProjectCreated(project as unknown as Record<string, unknown>);
+    this.projectsGateway.emitProjectCreated(
+      project as unknown as Record<string, unknown>,
+    );
     return project;
   }
 
@@ -58,7 +60,9 @@ export class ProjectsController {
     @Body() dto: UpdateProjectDto,
   ) {
     const project = await this.projectsService.update(id, user.id, dto);
-    this.projectsGateway.emitProjectUpdated(project as unknown as Record<string, unknown>);
+    this.projectsGateway.emitProjectUpdated(
+      project as unknown as Record<string, unknown>,
+    );
     return project;
   }
 
@@ -124,7 +128,11 @@ export class ProjectsController {
     @Param('memberId', ParseIntPipe) memberId: number,
     @CurrentUser() user: { id: number },
   ) {
-    const result = await this.projectsService.removeMember(id, memberId, user.id);
+    const result = await this.projectsService.removeMember(
+      id,
+      memberId,
+      user.id,
+    );
     this.projectsGateway.emitMemberRemoved({ projectId: id, userId: memberId });
     return result;
   }

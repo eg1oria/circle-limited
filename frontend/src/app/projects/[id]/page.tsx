@@ -31,8 +31,14 @@ function getAvatarColor(email: string): string {
     hash = email.charCodeAt(i) + ((hash << 5) - hash);
   }
   const colors = [
-    'bg-violet-500', 'bg-sky-500', 'bg-emerald-500', 'bg-amber-500',
-    'bg-rose-500', 'bg-teal-500', 'bg-indigo-500', 'bg-pink-500',
+    'bg-violet-500',
+    'bg-sky-500',
+    'bg-emerald-500',
+    'bg-amber-500',
+    'bg-rose-500',
+    'bg-teal-500',
+    'bg-indigo-500',
+    'bg-pink-500',
   ];
   return colors[Math.abs(hash) % colors.length];
 }
@@ -131,7 +137,8 @@ export default function ProjectDetailPage() {
         return {
           ...prev,
           name: (data.name as string) ?? prev.name,
-          description: data.description !== undefined ? (data.description as string | null) : prev.description,
+          description:
+            data.description !== undefined ? (data.description as string | null) : prev.description,
         };
       });
     },
@@ -377,14 +384,21 @@ export default function ProjectDetailPage() {
             <Link
               href="/projects"
               className="text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-300 transition-colors">
-              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+              <svg
+                className="w-5 h-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor">
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M15.75 19.5 8.25 12l7.5-7.5"
+                />
               </svg>
             </Link>
             <div>
-              <h1 className="text-xl font-bold text-zinc-900 dark:text-zinc-100">
-                {project.name}
-              </h1>
+              <h1 className="text-xl font-bold text-zinc-900 dark:text-zinc-100">{project.name}</h1>
               {project.description && (
                 <p className="text-xs text-zinc-500 dark:text-zinc-400 mt-0.5">
                   {project.description}
@@ -421,7 +435,9 @@ export default function ProjectDetailPage() {
         {error && (
           <div className="mb-6 bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 p-4 rounded-xl text-sm flex items-center justify-between">
             <span>{error}</span>
-            <button onClick={() => setError('')} className="text-red-400 hover:text-red-600 ml-4">✕</button>
+            <button onClick={() => setError('')} className="text-red-400 hover:text-red-600 ml-4">
+              ✕
+            </button>
           </div>
         )}
 
@@ -537,7 +553,11 @@ export default function ProjectDetailPage() {
                               </span>
                               <span className="text-[11px] text-zinc-400 dark:text-zinc-500 truncate">
                                 {email.split('@')[0]}
-                                {isOwn && <span className="ml-1 text-zinc-900 dark:text-zinc-100 font-medium">(you)</span>}
+                                {isOwn && (
+                                  <span className="ml-1 text-zinc-900 dark:text-zinc-100 font-medium">
+                                    (you)
+                                  </span>
+                                )}
                               </span>
                               <span className="text-[10px] text-zinc-300 dark:text-zinc-700 ml-auto">
                                 {timeAgo(task.createdAt)}
@@ -649,16 +669,34 @@ export default function ProjectDetailPage() {
                           onClick={() => handleAcceptRequest(req.id)}
                           className="w-7 h-7 rounded-lg bg-emerald-50 dark:bg-emerald-900/30 hover:bg-emerald-100 dark:hover:bg-emerald-900/50 text-emerald-600 dark:text-emerald-400 flex items-center justify-center transition-colors"
                           title="Accept">
-                          <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+                          <svg
+                            className="w-3.5 h-3.5"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            strokeWidth={2}
+                            stroke="currentColor">
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              d="m4.5 12.75 6 6 9-13.5"
+                            />
                           </svg>
                         </button>
                         <button
                           onClick={() => handleRejectRequest(req.id)}
                           className="w-7 h-7 rounded-lg bg-red-50 dark:bg-red-900/20 hover:bg-red-100 dark:hover:bg-red-900/40 text-red-500 dark:text-red-400 flex items-center justify-center transition-colors"
                           title="Reject">
-                          <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
+                          <svg
+                            className="w-3.5 h-3.5"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            strokeWidth={2}
+                            stroke="currentColor">
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              d="M6 18 18 6M6 6l12 12"
+                            />
                           </svg>
                         </button>
                       </div>
@@ -670,17 +708,19 @@ export default function ProjectDetailPage() {
 
             {/* Project Info */}
             <div className="bg-white dark:bg-zinc-900 rounded-2xl border border-zinc-200 dark:border-zinc-800 p-5">
-              <h3 className="text-sm font-semibold text-zinc-900 dark:text-zinc-100 mb-3">
-                About
-              </h3>
+              <h3 className="text-sm font-semibold text-zinc-900 dark:text-zinc-100 mb-3">About</h3>
               <div className="space-y-2 text-xs text-zinc-500 dark:text-zinc-400">
                 <div className="flex justify-between">
                   <span>Tasks</span>
-                  <span className="font-medium text-zinc-700 dark:text-zinc-300">{project.tasks.length}</span>
+                  <span className="font-medium text-zinc-700 dark:text-zinc-300">
+                    {project.tasks.length}
+                  </span>
                 </div>
                 <div className="flex justify-between">
                   <span>Members</span>
-                  <span className="font-medium text-zinc-700 dark:text-zinc-300">{project.members.length}</span>
+                  <span className="font-medium text-zinc-700 dark:text-zinc-300">
+                    {project.members.length}
+                  </span>
                 </div>
                 <div className="flex justify-between">
                   <span>Created</span>
